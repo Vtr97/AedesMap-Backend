@@ -7,6 +7,7 @@ export interface IReport extends Document {
     status: "Ativo" | "Inativo";
     reportedAt?: Date;
     inactiveAt?: Date | null;
+    user: mongoose.Types.ObjectId;
   };
   geometry: {
     type: "Point";
@@ -29,6 +30,11 @@ const ReportSchema: Schema<IReport> = new Schema(
           type: String,
           enum: ["Ativo", "Inativo"],
           default: "Ativo",
+        },
+        user: { 
+          type: Schema.Types.ObjectId, 
+          ref: "User", 
+          required: true 
         },
         reportedAt: { type: Date, default: Date.now },
         inactiveAt: { type: Date, default: null },
