@@ -1,11 +1,13 @@
 import express from "express";
 import mongoose from "mongoose";
 import reportsRouter from "./routes/reports.route";
+import usersRouter from "./routes/users.route";
 const app = express();
 
 app.use(express.json());
 
 app.use("/api/reports",reportsRouter);
+app.use("/api/users",usersRouter);
 
 
 mongoose.connect("mongodb://localhost:27017/aedesmap")
